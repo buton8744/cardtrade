@@ -1,0 +1,61 @@
+package packet;
+
+enum PacketType {
+     SIGNUPREQ = 1;
+     SIGNUPACK = 2;
+     SIGNINREQ = 3;
+     SIGNINACK = 4;
+     WITHDRAWREQ = 5;
+     WITHDRAWACK = 6;
+     LOGOUTREQ = 7;
+     LOGOUTACK = 8;
+     CHATINGREQ = 9;
+     CHATINGACK = 10;
+}
+
+message SignUpReq {
+required string id = 1;
+required string password = 2;
+}
+
+message SignUpAck {
+required bool result = 1;
+repeated string userids = 2;
+}
+
+message SignInReq {
+required string id = 1;
+required string password = 2; 
+}
+
+message SignInAck {
+required bool result = 1;
+repeated string userids = 2;
+}
+
+message WithDrawReq {
+required string password = 1;
+}
+
+message WithDrawAck {
+required bool result = 1;
+optional string userid = 2;
+}
+
+message LogoutReq {
+}
+
+message LogoutAck {
+required bool result = 1;
+optional string userid = 2;
+}
+
+message ChatingReq {
+required string userid = 1;
+required string message = 2;
+}
+
+message ChatingAck {
+required string userid = 1;
+required string message = 2;
+}
