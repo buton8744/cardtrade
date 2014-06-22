@@ -34,14 +34,19 @@ func (m *Mydb) Close() {
 }
 
 func (m *Mydb) Query(query string, args ...interface{}) *sql.Rows {
-	rows, err := m.db.Query(query, args)
+	stmt, err := m.db.Prepare(query)
 	if err != nil {
+		return nil
+	}
+	rows, err := stmt.Query(args)
+	if err != nil {
+		return nil
 	}
 	return rows
 }
 
 func (m *Mydb) Execute(query string, args ...interface{}) error {
-	result, err := m.db.Exec(query, args)
+	_, err := m.db.Exec(query, args)
 	if err != nil {
 		return err
 	}

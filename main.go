@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	app := &net.ServerApp{"0.0.0.0", "8899", make(chan string), list.New()}
-	app.Run()
+	app := &net.ServerApp{}
+	app.Run("0.0.0.0", "8899", make(chan *net.Packet), list.New())
 }
